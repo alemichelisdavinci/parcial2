@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "nombre": "PC INTEL I9",
+    "descripcion": "PC INTEL I9 13900 RTX 4080 RAM 32GB SSD 1TB",
+    "precio": 5594298,
+    "categoria": "PC GAMER",
+    "stock": 15,
+    "imagen": "images/1.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "GIGABYTE NOTEBOOK G5",
+    "descripcion": "GIGABYTE NOTEBOOK G5 144HZ i5-11400H RTX3050TI 2x8GB 512GB WIN 10",
+    "precio": 1610391,
+    "categoria": "NOTEBOOKS",
+    "stock": 8,
+    "imagen": "images/2.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "MONITOR LG 34",
+    "descripcion": "MONITOR LG 34 GAMER 34GP63A WQHD CURVO 160 HZ (II) (0070)",
+    "precio": 1069878,
+    "categoria": "MONITORES",
+    "stock": 25,
+    "imagen": "images/3.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "SILLA GAMER RAIDMAX",
+    "descripcion": "SILLA GAMER RAIDMAX DK-925BK NEGRA",
+    "precio": 420505,
+    "categoria": "SILLA GAMER",
+    "stock": 40,
+    "imagen": "images/4.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "TECLADO GAMER RAZER",
+    "descripcion": "TECLADO GAMER RAZER HUNTSMAN MINI SW RED LINEAR",
+    "precio": 214257,
+    "categoria": "TECLADOS",
+    "stock": 12,
+    "imagen": "images/5.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "MOUSE GAMER TT",
+    "descripcion": "MOUSE GAMER TT ESPORTS TALON ELITE COMBO RGB BLACK",
+    "precio": 47714,
+    "categoria": "MOUSES",
+    "stock": 30,
+    "imagen": "images/6.jpg"
+  },
+  {
+    "id": 7,
+    "nombre": "AURICULAR GAMER RAZER",
+    "descripcion": "AURICULAR GAMER RAZER KRAKEN V3 HYPERSENSE",
+    "precio": 245023,
+    "categoria": "AURICULARES",
+    "stock": 20,
+    "imagen": "images/7.jpg"
+  },
+  {
+    "id": 8,
+    "nombre": "PROCESADOR INTEL CORE ULTRA9",
+    "descripcion": "Proces. Intel Core Ultra 9 285K 24 Cores C/video S/cooler S1851",
+    "precio": 1203851,
+    "categoria": "PROCESADORES",
+    "stock": 18,
+    "imagen": "images/8.jpg"
+  },
+  {
+    "id": 9,
+    "nombre": "MOTHER ASROCK LGA1851",
+    "descripcion": "MOTHER ASROCK (LGA1851) Z890M RIPTIDE WIFI",
+    "precio": 507244,
+    "categoria": "MOTHERBOARDS",
+    "stock": 60,
+    "imagen": "images/9.jpg"
+  },
+  {
+    "id": 10,
+    "nombre": "PC GAMER RYZEN 5 ",
+    "descripcion": "PC GAMER RYZEN 5 4600G RAM 8GB SSD 240GB",
+    "precio": 504284,
+    "categoria": "PC GAMER",
+    "stock": 100,
+    "imagen": "images/10.jpg"
+  },
+  {
+    "id": 11,
+    "nombre": "Nuevo Producto",
+    "descripcion": "Nuevo Producto",
+    "precio": 9999,
+    "categoria": "Nuevo Producto",
+    "stock": 9999,
+    "imagen": "images/1751067750108.jpg"
+  }
+]
