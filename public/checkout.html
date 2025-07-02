@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 1rem;
+      background: #4ecdc4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background: #37a59c;
+    }
+    .cart-summary {
+      margin-bottom: 2rem;
+    }
+    .cart-summary h2 {
+      margin-bottom: 1rem;
+    }
+    .cart-item {
+      border-bottom: 1px solid #ddd;
+      padding: 0.5rem 0;
+    }
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Finalizar Compra</h1>
+
+    <div class="cart-summary">
+      <h2>🛒 Productos en tu carrito</h2>
+      <div class="cart-item">
+        Producto 1 × 2 - $1000
+      </div>
+      <div class="cart-item">
+        Producto 2 × 1 - $500
+      </div>
+      <div class="cart-item">
+        Producto 3 × 1 - $750
+      </div>
+      <p><strong>Total:</strong> $2250</p>
+    </div>
+
+    <form action="pago.html">
+      <label>Nombre completo
+        <input type="text" name="nombre" required />
+      </label>
+
+      <label>Correo electrónico
+        <input type="email" name="email" required />
+      </label>
+
+      <label>Dirección de envío
+        <textarea name="direccion" rows="3" required></textarea>
+      </label>
+
+      <label>Tipo de envío
+        <select name="envio">
+          <option value="retiro">Retiro en tienda</option>
+          <option value="normal">Envío estándar</option>
+          <option value="express">Envío express</option>
+        </select>
+      </label>
+
+      <label>Notas adicionales
+        <textarea name="notas" rows="2"></textarea>
+      </label>
+
+      <label>Método de pago
+        <select name="pago">
+          <option value="tarjeta">Tarjeta de crédito/débito</option>
+          <option value="transferencia">Transferencia bancaria</option>
+          <option value="mercadopago">MercadoPago</option>
+        </select>
+      </label>
+
+      <button type="submit">Continuar al pago</button>
+    </form>
+  </div>
+</body>
+</html>

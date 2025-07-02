@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Panel Admin - Productos</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <h2>🛍 Admin</h2>
+        <nav>
+        <a href="admin.html" class="active">📊 Estadísticas</a>
+        <a href="nuevoproducto.html">➕ Nuevo Producto</a>
+        <a href="inventario.html">📦 Inventario</a>
+        <a href="configuracion.html">⚙️ Configuración</a>
+        <a href="index.html">🌐 Ir a la web</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <h1>Cargar nuevo producto</h1>
+ 
+        <form id="productForm" enctype="multipart/form-data">
+  <label>Nombre<input type="text" name="nombre" required></label>
+  <label>Descripción<textarea name="descripcion" required></textarea></label>
+  <label>Precio<input type="number" name="precio" required></label>
+  <label>Categoría<input type="text" name="categoria" required></label>
+  <label>Stock<input type="number" name="stock" required></label>
+  <label>Imagen (subir archivo)<input type="file" name="imagen" required></label>
+  <button type="submit">Guardar producto</button>
+</form>
+
+
+        <div id="mensaje" class="mensaje"></div>
+      </main>
+    </div>
+
+<script>
+  const form = document.getElementById("productForm");
+  const mensaje = document.getElementById("mensaje");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+const res = await fetch('/api/productos', {
+  method: 'POST',
+  body: formData
+});
+
+    if (res.ok) {
+      const json = await res.json();
+      mensaje.textContent = "✅ Producto agregado correctamente.";
+      form.reset();
+    } else {
+      mensaje.textContent = "❌ Hubo un error al guardar.";
+    }
+  });
+</script>
+  </body>
+</html>

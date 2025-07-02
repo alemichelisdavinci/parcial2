@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Inventario - Admin</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>🛍 Admin</h2>
+      <nav>
+        <a href="admin.html" class="active">📊 Estadísticas</a>
+        <a href="nuevoproducto.html">➕ Nuevo Producto</a>
+        <a href="inventario.html">📦 Inventario</a>
+        <a href="configuracion.html">⚙️ Configuración</a>
+        <a href="index.html">🌐 Ir a la web</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <h1>Inventario de Productos</h1>
+      <div id="productList"></div>
+    </main>
+  </div>
+
+  <script>
+    async function cargarProductos() {
+      const res = await fetch('/api/productos');
+      const productos = await res.json();
+
+      const lista = document.getElementById('productList');
+      lista.innerHTML = '';
+
+      if (productos.length === 0) {
+        lista.innerHTML = '<p>No hay productos cargados.</p>';
+        return;
+      }
+
+      productos.forEach(prod => {
+        const div = document.createElement('div');
+        div.classList.add('card');
+        div.style.marginBottom = '1rem';
+
+        div.innerHTML = `
+          <div class="info">
+            <h3>${prod.nombre}</h3>
+            <p>${prod.descripcion}</p>
+            <p><strong>Precio:</strong> $${prod.precio}</p>
+            <p><strong>Stock:</strong> ${prod.stock}</p>
+            <p><strong>Categoría:</strong> ${prod.categoria}</p>
+            <div class="actions">
+              <button onclick="editarProducto(${prod.id})">✏️ Editar</button>
+              <button onclick="eliminarProducto(${prod.id})">🗑 Eliminar</button>
+            </div>
+          </div>
+        `;
+        lista.appendChild(div);
+      });
+    }
+
+    function editarProducto(id) {
+      // Redirige a editar.html con el ID del producto en la URL
+      window.location.href = `editar.html?id=${id}`;
+    }
+
+    async function eliminarProducto(id) {
+      if (!confirm('¿Estás seguro de eliminar este producto?')) return;
+
+      const res = await fetch(`/api/productos/${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        alert('✅ Producto eliminado');
+        cargarProductos();
+      } else {
+        alert('❌ Error al eliminar el producto');
+      }
+    }
+
+    cargarProductos();
+  </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Inventario - Admin</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>🛍 Admin</h2>
+      <nav>
+        <a href="admin.html">➕ Nuevo Producto</a>
+        <a href="inventario.html" class="active">📦 Inventario</a>
+        <a href="#">⚙️ Configuración</a>
+               <a href="index.html">⚙️ Ir a la web</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <h1>Inventario de Productos</h1>
+      <div id="productList"></div>
+    </main>
+  </div>
+
+  <script>
+    async function cargarProductos() {
+      const res = await fetch('/api/productos');
+      const productos = await res.json();
+
+      const lista = document.getElementById('productList');
+      lista.innerHTML = '';
+
+      if (productos.length === 0) {
+        lista.innerHTML = '<p>No hay productos cargados.</p>';
+        return;
+      }
+
+      productos.forEach(prod => {
+        const div = document.createElement('div');
+        div.classList.add('card');
+        div.style.marginBottom = '1rem';
+
+        div.innerHTML = `
+          <div class="info">
+            <h3>${prod.nombre}</h3>
+            <p>${prod.descripcion}</p>
+            <p><strong>Precio:</strong> $${prod.precio}</p>
+            <p><strong>Stock:</strong> ${prod.stock}</p>
+            <p><strong>Categoría:</strong> ${prod.categoria}</p>
+            <div class="actions">
+              <button onclick="editarProducto(${prod.id})">✏️ Editar</button>
+              <button onclick="eliminarProducto(${prod.id})">🗑 Eliminar</button>
+            </div>
+          </div>
+        `;
+        lista.appendChild(div);
+      });
+    }
+
+    function editarProducto(id) {
+      // Redirige a admin.html con ID como parámetro
+      window.location.href = `admin.html?id=${id}`;
+    }
+
+    async function eliminarProducto(id) {
+      if (!confirm('¿Estás seguro de eliminar este producto?')) return;
+
+      const res = await fetch(`/api/productos/${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        alert('✅ Producto eliminado');
+        cargarProductos();
+      } else {
+        alert('❌ Error al eliminar el producto');
+      }
+    }
+
+    cargarProductos();
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Inventario - Admin</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>🏭 Admin</h2>
+      <nav>
+        <a href="admin.html">➕ Nuevo Producto</a>
+        <a href="inventario.html" class="active">📦 Inventario</a>
+        <a href="#">⚙️ Configuración</a>
+        <a href="index.html">⚙️ Ir a la web</a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <h1>Inventario de Productos</h1>
+      <div id="productList"></div>
+    </main>
+  </div>
+
+  <script>
+    async function cargarProductos() {
+      const res = await fetch('/api/productos');
+      const productos = await res.json();
+
+      const lista = document.getElementById('productList');
+      lista.innerHTML = '';
+
+      if (productos.length === 0) {
+        lista.innerHTML = '<p>No hay productos cargados.</p>';
+        return;
+      }
+
+      productos.forEach(prod => {
+        const div = document.createElement('div');
+        div.classList.add('card');
+        div.style.marginBottom = '1rem';
+
+        div.innerHTML = `
+          <div class="info">
+            <img src="${prod.imagen}" alt="${prod.nombre}" style="width:100px;height:auto;margin-bottom:10px" onerror="this.src='https://placehold.co/100x100?text=Sin+imagen';">
+            <h3>${prod.nombre}</h3>
+            <p>${prod.descripcion}</p>
+            <p><strong>Precio:</strong> $${prod.precio}</p>
+            <p><strong>Stock:</strong> ${prod.stock}</p>
+            <p><strong>Categoría:</strong> ${prod.categoria}</p>
+            <div class="actions">
+              <button onclick="editarProducto(${prod.id})">✏️ Editar</button>
+              <button onclick="eliminarProducto(${prod.id})">🗑 Eliminar</button>
+            </div>
+          </div>
+        `;
+        lista.appendChild(div);
+      });
+    }
+
+    function editarProducto(id) {
+      // Redirige a admin.html con ID como parámetro
+      window.location.href = `admin.html?id=${id}`;
+    }
+
+    async function eliminarProducto(id) {
+      if (!confirm('¿Estás seguro de eliminar este producto?')) return;
+
+      const res = await fetch(`/api/productos/${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        alert('✅ Producto eliminado');
+        cargarProductos();
+      } else {
+        alert('❌ Error al eliminar el producto');
+      }
+    }
+
+    cargarProductos();
+  </script>
+</body>
+</html> -->

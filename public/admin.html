@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard - Admin</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>🛍 Admin</h2>
+      <nav>
+        <a href="admin.html" class="active">📊 Estadísticas</a>
+        <a href="nuevoproducto.html">➕ Nuevo Producto</a>
+        <a href="inventario.html">📦 Inventario</a>
+        <a href="configuracion.html">⚙️ Configuración</a>
+        <a href="index.html">🌐 Ir a la web</a>
+      </nav>
+    </aside>
+
+  <main class="content">
+  <h1 class="dashboard-title">📊 Estadísticas Generales</h1>
+
+  <div class="stats-grid">
+    <div class="stat-card total-stock">
+      <div class="icon">📦</div>
+      <div class="info">
+        <h3>Total en Stock</h3>
+        <p id="totalStock">...</p>
+      </div>
+    </div>
+
+    <div class="stat-card cart-items">
+      <div class="icon">🛒</div>
+      <div class="info">
+        <h3>En el Carrito</h3>
+        <p id="productosEnCarrito">...</p>
+      </div>
+    </div>
+
+    <div class="stat-card total-vendido">
+      <div class="icon">💰</div>
+      <div class="info">
+        <h3>Total Vendido</h3>
+        <p id="totalVendido">$0</p>
+      </div>
+    </div>
+
+    <div class="stat-card total-productos">
+      <div class="icon">📋</div>
+      <div class="info">
+        <h3>Productos Registrados</h3>
+        <p id="totalProductos">...</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+  .dashboard-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    padding: 1.5rem;
+    transition: transform 0.2s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .stat-card .icon {
+    font-size: 2.2rem;
+    margin-right: 1rem;
+    color: #4ecdc4;
+  }
+
+  .stat-card .info h3 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: #222;
+  }
+
+  .stat-card .info p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0.4rem 0 0;
+    color: #111;
+  }
+
+  /* Colores diferenciados por tipo */
+  .total-stock   .icon { color: #6c5ce7; }
+  .cart-items    .icon { color: #00b894; }
+  .total-vendido .icon { color: #fd79a8; }
+  .total-productos .icon { color: #0984e3; }
+</style>
+
+  </div>
+
+  <script>
+    async function cargarEstadisticas() {
+      const res = await fetch('/api/productos');
+      const productos = await res.json();
+
+      // Total productos y stock
+      const totalProductos = productos.length;
+      const totalStock = productos.reduce((acc, p) => acc + p.stock, 0);
+
+      // Datos del carrito (almacenados en localStorage)
+      const carrito = JSON.parse(localStorage.getItem('carrito') || '{}');
+      const productosEnCarrito = Object.values(carrito).reduce((a, b) => a + b, 0);
+
+      // Total vendido (sólo si ya tenés una forma de registrar ventas reales)
+      const totalVendido = localStorage.getItem('totalVendido') || 0;
+
+      document.getElementById('totalProductos').textContent = totalProductos;
+      document.getElementById('totalStock').textContent = totalStock;
+      document.getElementById('productosEnCarrito').textContent = productosEnCarrito;
+      document.getElementById('totalVendido').textContent = `$${parseFloat(totalVendido).toFixed(2)}`;
+    }
+
+    cargarEstadisticas();
+  </script>
+</body>
+</html>

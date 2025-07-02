@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Programación I | Parcial 2 | Michelis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+    <a href="index.html" class="logo">🛍 YourStore</a>
+    <nav class="main-nav">
+          <h2 class="subtitle">Programación I · Parcial 2 · Michelis</h2>
+           <a href="admin.html">⚙️ Ir al admin</a>
+    </nav>
+    <button class="menu-toggle" onclick="document.querySelector('.main-nav').classList.toggle('open')">☰</button>
+  </div>
+  </header>
+
+  <section class="hero-carousel">
+  <div class="carousel-track" id="carouselTrack">
+    <img src="images/banner1.jpg" alt="Promo 1">
+    <img src="images/banner2.jpg" alt="Promo 2">
+    <img src="images/banner3.jpg" alt="Promo 3">
+  </div>
+</section>
+
+  <div class="site-header">
+    <div class="container">
+    <div class="controls">
+  <label class="control">
+    <span class="control__icon">🎯</span>
+    <select id="categoryFilter" class="select">
+      <option value="all">Todas las categorías</option>
+    </select>
+  </label>
+
+  <label class="control">
+    <span class="control__icon">💰</span>
+    <select id="priceOrder" class="select">
+      <option value="none">Ordenar por precio</option>
+      <option value="asc">Menor → Mayor</option>
+      <option value="desc">Mayor → Menor</option>
+    </select>
+  </label>
+
+  <label class="control">
+    <span class="control__icon">🔎</span>
+    <input type="number" id="minPrice" placeholder="$ mín." class="input" min="0">
+  </label>
+
+  <label class="control">
+    <span class="control__icon">🔎</span>
+    <input type="number" id="maxPrice" placeholder="$ máx." class="input" min="0">
+  </label>
+
+  <div class="control">
+    <button id="rangeBtn" class="btn-primary">Filtrar</button>
+  </div>
+    <button id="miniCartBtn" class="cart-indicator">
+      🛒 <span id="cartCount">0</span> art. – <span id="cartTotal">$ 0</span>
+    </button>
+</div>
+
+
+    </div>
+</div>
+
+  <main id="productGrid" class="grid"></main>
+  <div id="modalContainer"></div>
+
+  <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h3>🛍 Mi Tienda</h3>
+      <p>Tu tienda online de confianza. Productos de calidad, al mejor precio.</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Enlaces</h4>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="inventario.html">Inventario</a></li>
+        <li><a href="admin.html">Administrar</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Contacto</h4>
+      <p>📧 contacto@mitienda.com</p>
+      <p>📞 +54 9 11 1234 5678</p>
+      <p>📍 Buenos Aires, Argentina</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Seguinos</h4>
+      <div class="social-icons">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" /></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Instagram" /></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Mi Tienda. Todos los derechos reservados.</p>
+      </div>
+        <div class="footer-bottom">
+      <ul>
+      <li>Profesor Fabrizio Carlassara</li>
+      <li>
+        <a href="mailto:fabrizio.carlassara@davinci.edu.ar?subject=P1%20-%20Consulta%20-%20DW2[M|T|N][A|B]%20-%20Apellido,%20Nombre" target="_blank">
+          fabrizio.carlassara@davinci.edu.ar
+        </a>
+      </li>
+      <li>Programación 1</li>
+      <li>
+        <a href="#">URL del repo de GitHub</a>
+      </li>
+    </ul>
+    </div>
+</footer>
+
+
+  <script type="module" src="scripts/index.js"></script>
+  <script>
+const list = el('div', { class: 'cartList' });
+
+for (const [id, q] of cart.entries()) {
+  const p = products.find(x => x.id === id);
+  list.append(el('div', { class: 'cartItem' },
+    el('img', {
+      src: p.imagen,
+      alt: p.nombre,
+      style: 'width:50px',
+      onerror: "this.src='https://placehold.co/50';"
+    }),
+    el('div', { class: 'cartItemText' },
+      el('span', { text: `${p.nombre} × ${q}` }),
+      el('span', { text: formatPrice(p.precio * q) })
+    ),
+    el('div', { class: 'cartItemButtons' },
+      el('button', {
+        text: '−',
+        onclick: () => { cart.remove(id); md.remove(); openCartModal(); }
+      }),
+      el('button', {
+        text: '+',
+        onclick: () => { cart.add(p); md.remove(); openCartModal(); }
+      })
+    )
+  ));
+}
+
+  </script>
+</body>
+</html>
